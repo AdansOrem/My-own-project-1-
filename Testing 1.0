@@ -15,3 +15,19 @@ int main() {
 
     return 0;
 }
+function fibonacciSequence(limit) {
+    let sequence = [];
+    let a = 0, b = 1;
+    
+    sequence.push(a);
+    sequence.push(b);
+
+    while (b < limit) {
+        let temp = b;
+        b = a + b;
+        a = temp;
+        sequence.push(b);
+    }
+
+    return sequence;
+}

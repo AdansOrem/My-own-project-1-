@@ -1,0 +1,79 @@
+class Product {
+  constructor(id, name, price, quantity) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+  }
+
+  // Method to calculate the total value of a product
+  getTotalValue() {
+    return this.price * this.quantity;
+  }
+}
+
+// Define a class for the inventory
+class Inventory {
+  constructor() {
+    this.products = [];
+  }
+
+  // Method to add a product to the inventory
+  addProduct(product) {
+    this.products.push(product);
+  }
+
+  // Method to remove a product from the inventory
+  removeProduct(productId) {
+    this.products = this.products.filter(product => product.id !== productId);
+  }
+
+  // Method to update the quantity of a product
+  updateProductQuantity(productId, newQuantity) {
+    this.products.forEach(product => {
+      if (product.id === productId) {
+        product.quantity = newQuantity;
+      }
+    });
+  }
+
+  // Method to calculate the total value of the inventory
+  getTotalInventoryValue() {
+    let totalValue = 0;
+    this.products.forEach(product => {
+      totalValue += product.getTotalValue();
+    });
+    return totalValue;
+  }
+
+  // Method to display the inventory
+  displayInventory() {
+    console.log("Inventory:");
+    this.products.forEach(product => {
+      console.log(`${product.name} - Price: $${product.price} - Quantity: ${product.quantity}`);
+    });
+  }
+}
+
+// Example usage
+const inventory = new Inventory();
+
+// Add some products to the inventory
+inventory.addProduct(new Product(1, "Laptop", 1000, 5));
+inventory.addProduct(new Product(2, "Smartphone", 800, 10));
+inventory.addProduct(new Product(3, "Headphones", 100, 20));
+
+// Display the initial inventory
+inventory.displayInventory();
+
+// Update quantity of a product
+inventory.updateProductQuantity(1, 3);
+
+// Remove a product
+inventory.removeProduct(2);
+
+// Display the updated inventory
+inventory.displayInventory();
+
+// Display the total value of the inventory
+console.log("Total inventory value: $" + inventory.getTotalInventoryValue());

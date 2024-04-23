@@ -1,0 +1,25 @@
+import json
+
+def parse_json(data):
+    try:
+        parsed_data = json.loads(data)
+        return parsed_data
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON: {e}")
+        return None
+
+# Example JSON data
+json_data = '''
+{
+    "name": "John",
+    "age": 30,
+    "cars": [
+        {"make": "Ford", "model": "Mustang", "year": 1969},
+        {"make": "BMW", "model": "X5", "year": 2019},
+        {"make": "Tesla", "model": "Model S", "year": 2021}
+    ]
+}
+'''
+
+parsed_json = parse_json(json_data)
+print(parsed_json)
